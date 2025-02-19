@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import TodoContext from "../context/TodoContext";
 
-const Form = ({setTodos}) => {
+const Form = () => {
+  const {setTodos} = useContext(TodoContext);
   const [title, setTitle] = useState('');
   const [todoContent, setTodoContent] = useState('');
 

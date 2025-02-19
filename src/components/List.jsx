@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+import TodoContext from "../context/TodoContext";
 
-const List = ({ todos, setTodos }) => {
+const List = () => {
   // TODO: 샘플 데이터를 지우고 작성해주세요.
-
+  const {todos, setTodos} = useContext(TodoContext);
   const handleDone = (id) => {
     // TODO: 완료 처리
     setTodos(

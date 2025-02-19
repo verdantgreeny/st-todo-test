@@ -1,29 +1,21 @@
 import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import TodoContext from "../context/TodoContext";
 
 const List = () => {
   // TODO: 샘플 데이터를 지우고 작성해주세요.
-  const {todos, setTodos} = useContext(TodoContext);
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+
   const handleDone = (id) => {
     // TODO: 완료 처리
-    setTodos(
-      todos.map((t)=> {
-        if (t.id === id){
-          return {
-            ...t,
-            isDone: !t.isDone,
-          }
-        } else {
-          return t
-        }
-      })
-    );
+    dispatch(doneTodo({ id }));
   };
 
   const handleDelete = (id) => {
     // TODO: 삭제 처리
-    setTodos(todos.filter((todo) => todo.id !== id));
+    dispatch(deleteTodo({ id }));
   };
 
   return (

@@ -1,25 +1,19 @@
 import React, { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import TodoContext from "../context/TodoContext";
 
 const Form = () => {
-  const {setTodos} = useContext(TodoContext);
-  const [title, setTitle] = useState('');
-  const [todoContent, setTodoContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [todoContent, setTodoContent] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newTodos = {
-      id: new Date().getTime(),
-      title,
-      todoContent,
-    }
-
-    setTodos((prev)=>{
-      return [...prev, newTodos]
-    })
-    setTitle('');
-    setTodoContent('');
+    // console.log(e);
+    dispatch(addTodo({ id: new Date().getTime(), title, todoContent }));
+    setTitle("");
+    setTodoContent("");
   };
 
   return (
@@ -28,13 +22,13 @@ const Form = () => {
         type="text"
         name="title"
         placeholder="할 일 제목을 입력하세요"
-        onChange={(e)=>setTitle(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
       />
       <StyledInput
         type="text"
         name="content"
         placeholder="할 일 내용을 입력하세요"
-        onChange={(e)=>setTodoContent(e.target.value)}
+        onChange={(e) => setTodoContent(e.target.value)}
       />
       <StyledButton type="submit">추가</StyledButton>
     </StyledForm>

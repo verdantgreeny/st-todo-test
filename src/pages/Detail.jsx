@@ -1,13 +1,28 @@
+import { useNavigate, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const DetailPage = () => {
+  const todos = useSelector((state) => state.todos);
+  const [query] = useSearchParams();
+  const todoId = +query.get("id");
+  const todo = todos.find((t) => t.id === todoId);
+  const navigate = useNavigate();
+
+  // console.log(todo);
+
   return (
     <StyledContainer>
       <StyledTitle>할 일 상세 페이지</StyledTitle>
-      <StyledText>할일 제목 : </StyledText>
-      <StyledText>할일 내용 : </StyledText>
-      <StyledText>할일 완료 여부 : </StyledText>
-      <StyledButton>메인 페이지로 돌아가기</StyledButton>
+      <StyledText>할일 제목 : {todo.title} </StyledText>
+      <StyledText>할일 내용 : {todo.content} </StyledText>
+      <StyledText>
+        할일 완료 여부 : {todo.isDone ? "완료" : "미완료"}
+      </StyledText>
+      <StyledButton onClick={() => navigate("/")}>
+        {" "}
+        메인 페이지로 돌아가기
+      </StyledButton>
     </StyledContainer>
   );
 };

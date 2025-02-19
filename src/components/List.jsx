@@ -1,5 +1,5 @@
-import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TodoContext from "../context/TodoContext";
 import {doneTodo, deleteTodo} from "../redux/todosSlice"
@@ -8,6 +8,7 @@ const List = () => {
   // TODO: 샘플 데이터를 지우고 작성해주세요.
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDone = (id) => {
     // TODO: 완료 처리
@@ -22,7 +23,12 @@ const List = () => {
   return (
     <StyledList>
       {todos.map((item) => (
-        <StyledListItem key={item.id}>
+        <StyledListItem key={item.id} onClick={(e)=>{
+          if (e.target.tagName === "BUTTON") {
+            return;
+          }
+          navigate(`/detail?id=${item.id}`)
+        }}>
           <StyledTitle>{item.title}</StyledTitle>
           <StyledContent>{item.content}</StyledContent>
           <StyledStatus>{item.isDone ? "완료" : "미완료"}</StyledStatus>

@@ -39,7 +39,7 @@ const todosSlice = createSlice({
     },
     doneTodo: (state, action) => {
       return [...state].map((t) => {
-        if (t.id === action.payload) {
+        if (t.id === action.payload.id) {
           return {
             ...t,
             isDone: !t.isDone,

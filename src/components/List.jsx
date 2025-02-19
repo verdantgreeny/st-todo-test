@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import TodoContext from "../context/TodoContext";
+import {doneTodo, deleteTodo} from "../redux/todosSlice"
 
 const List = () => {
   // TODO: 샘플 데이터를 지우고 작성해주세요.

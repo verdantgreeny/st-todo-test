@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import TodoContext from "../context/TodoContext";
+import {addTodo} from "../redux/todosSlice"
 
 const Form = () => {
   const [title, setTitle] = useState("");
